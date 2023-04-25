@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Share Screenshot
+Exec=TOOLDIR/run.sh
+Terminal=false
+Categories=Network;

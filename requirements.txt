@@ -1,0 +1,4 @@
+pygobject
+twisted
+qrcode
+pillow

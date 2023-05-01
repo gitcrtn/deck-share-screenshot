@@ -4,15 +4,16 @@
 This is a tool to share screenshot for Steamdeck.  
 It can share screenshot by http server with QR code.
 
-## Requires
-* Python 3
-* pygobject
-* gtk3
-* twisted
-* qrcode
-* pillow
-
 ## How to install
+### Rust version
+1. Install tool on Steamdeck as desktop mode.
+```
+wget https://carrot.games/dl/sharess.tgz
+tar xf sharess.tgz
+cd sharess
+./create_desktop.sh
+```
+### Python version
 1. Prepare whl files for pygobject on Ubuntu 22.04 machine.
 ```
 sudo apt install build-essential python3-dev libgirepository1.0-dev
@@ -37,11 +38,33 @@ cd sharess
 7. Download image file to your phone.
 
 ## How to run for development
+### Rust version
+1. Run with environment values.
+```
+cat << EOS > .env
+HOMEDIR=/path/to/homedir
+CACHEDIR=/path/to/cachedir
+SCALE_FACTOR=1.0
+EOS
+cargo run
+```
+### Python version
 1. Run with environment values.
 ```
 . venv/bin/activate
 HOMEDIR=/path/to/homedir CACHEDIR=/path/to/cachedir python sharess.py
 ```
+
+## How to build for release
+### Rust version
+1. Build on Ubuntu 20.04 machine.  
+Warning: Not Ubuntu 22.04+ because Steamdeck requires openssl not 3.0+ but 1.1.1.
+```
+sudo apt install build-essential pkg-config cmake libssl-dev libfontconfig-dev
+git clone -b rust https://github.com/gitcrtn/deck-share-screenshot.git sharess-rs/
+cd sharess-rs
+./pack.sh
+``` 
 
 ## How to uninstall
 1. Remove tool.
